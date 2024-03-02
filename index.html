@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="MobileOptimized" content="176"/>
+    <title>RequestsJs :: Test</title>
+    <meta name="keywords" content="tls, ssl, http, url, uri, requests, request, javascript, js, link"/>
+    <meta name="robots" content="index, follow"/>
+    <style>
+@import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css");
+
+* {
+  box-sizing: border-box;
+  outline: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  width: 100vw;
+  padding: 32px;
+  background: #fefefe;
+  color: #2e2e2e;
+  display: flex;
+  flex-flow: column nowrap;
+  overflow: hidden auto;
+}
+
+.field {
+  overflow: hidden;
+  width: min-content;
+  display: inline-flex;
+  background-color: #f6fdfd;
+  gap: 14px;
+  margin-bottom: 24px;
+  border-radius: 3px;
+  padding: 10px 16px;
+}
+
+.field > span {
+  color: #2e2e2e;
+}
+
+.field > a {
+  padding-left: 16px;
+  border-left: 1px solid rgba(100 100 100 / 25%);
+  color: #2f37a3;
+  overflow: auto hidden;
+  text-decoration: none;
+}
+
+.field > a:hover {
+  opacity: 0.92;
+  text-decoration: underline;
+}
+
+#res-card {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 90%;
+  max-width: min-content;
+  height: auto;
+  max-height: 60vh;
+  background-color: #1d1e1f;
+  color: #aaa;
+  overflow: hidden auto;
+  margin-bottom: 24px;
+  border-radius: 3px;
+  padding: 12px 15px;
+}
+
+#res-card > p {
+  position: sticky -webkit-sticky;
+  top: 0;
+  border-bottom: 1px solid #3e3f3f;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  color: #37be5f;
+}
+
+#res-card > pre {
+  padding: 15px;
+  overflow: auto auto;
+  border-radius: 7px;
+  background-color: rgba(0, 120, 255, 0.2);
+}
+
+.hide {
+  display: none !important;
+}
+    </style>
+    <meta name="color-scheme" content="dark"/>
+    <meta name="theme-color" content="dark"/>
+  </head>
+  <body>
+    <div class="field z-depth-1">
+      <span>URL</span>
+      <a href="https://github.com/hctilg/RequestsJs/LICENSE" target="_blank">https://github.com/hctilg/RequestsJs/LICENSE</a>
+    </div>
+    <div id="res-card" class="hide z-depth-4">
+      <p title="Status">Status :  <span id="status"></span></p>
+      <pre title="Response" id="response"></pre>
+    </div>
+    <a href="javascript: send_request();" style="margin-right: auto;" class="waves-effect waves-dark btn-small" rel="send-request">Send Request</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="requests.min.js"></script>
+    <script>
+const send_request = event => {
+  $request('./LICENSE', { method: 'GET' })
+    .then(data => {
+      const status = document.getElementById('status');
+      const response = document.getElementById('response');
+      document.getElementById("res-card").classList.remove('hide');
+      response.innerText = data.response;
+      status.innerText = data.status;
+    })
+    .catch(error => {
+      console.error(error);
+      M.toast({ html: 'Error' });
+    });
+}
+    </script>
+  </body>
+</html>
