@@ -20,7 +20,7 @@ var options = {
     "Content-Type": "application/json;charset=UTF-8",
   },
   params: {
-    "username": "0x6d7366",
+    "username": "username",
     "password": "********"
   },
 };
